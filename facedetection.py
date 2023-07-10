@@ -18,7 +18,7 @@ cap = cv2.VideoCapture("video1.mp4")
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
-#source_file= "video1.mp4"
+#source_file= "video2.mp4"
 #file_extansion = source_file.split(".")[1]
 #unique_filename= str(uuid.uuid4())
 #destination_file = "C:/Users/ronan/OneDrive/Masaüstü/python/"+unique_filename+"."+file_extansion
