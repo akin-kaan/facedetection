@@ -3,7 +3,7 @@ import numpy as np
 import uuid
 import shutil
 
-net = cv2.dnn.readNet("yolov4/yolov4-tiny-3l_best.weights", "yolov4/yolov4-tiny-3l.cfg")
+net = cv2.dnn.readNet("dnn_model/yolov4-tiny.weights", "dnn_model/yolov4-tiny.cfg")
 modell = cv2.dnn.DetectionModel(net)
 modell.setInputParams(size=(416, 416), scale=1 / 255)
 
@@ -14,14 +14,14 @@ with open("dnn_model/classes.txt", "r") as file_object:
         classes.append(class_name)
 
 
-cap = cv2.VideoCapture("destination_file")
+cap = cv2.VideoCapture("video1.mp4")
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
-source_file= "video1.mp4"
-file_extansion = source_file.split(".")[1]
-unique_filename= str(uuid.uuid4())
-destination_file = "C:/Users/ronan/OneDrive/Masaüstü/python/"+unique_filename+"."+file_extansion
+#source_file= "video1.mp4"
+#file_extansion = source_file.split(".")[1]
+#unique_filename= str(uuid.uuid4())
+#destination_file = "C:/Users/ronan/OneDrive/Masaüstü/python/"+unique_filename+"."+file_extansion
 
 
 while True:
@@ -47,6 +47,6 @@ while True:
                 (200, 0, 50),
                 2,
             )
-            cv2.circle(frame, (center_x, center_y),100, (200, 0, 50), 3)
+            cv2.rectangle(frame, (center_x, center_y),(box_x,box_y), (200, 0, 50), 1)
     cv2.imshow("Frame", frame)
     cv2.waitKey(1)
