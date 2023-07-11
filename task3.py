@@ -32,7 +32,6 @@ for video_path in sorted(videos_path):
             break
 
         if counter % 5 == 0:
-            cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             height = frame.shape[0]
             width = frame.shape[1]
             center_x = width // 2
@@ -40,12 +39,17 @@ for video_path in sorted(videos_path):
             w = 300
             h = 300
             new_frame = frame[center_y : center_y + h, center_x : center_x + w]
+          
             (class_ids, score, bboxes) = modell.detect(new_frame)
             if class_ids == 0:
-                cv2.imwrite(f"{save_folder}/{str(uuid.uuid4())}.jpg", new_frame)
+                new1_frame = cv2.cvtColor(new_frame, cv2.COLOR_BGR2GRAY)
+                cv2.imwrite(f"{save_folder}/{str(uuid.uuid4())}.jpg", new1_frame)
 
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
+
+    cap.release()
+    cv2.destroyAllWindows()
 
     cap.release()
     cv2.destroyAllWindows()
